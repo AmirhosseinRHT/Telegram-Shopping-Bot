@@ -6,10 +6,10 @@ proxyV2ray = {
     "port": 10809,
 }
 
-pluginTest = {"root": "plugins"}
+myPlugs = {"root": "plugins"}
 
-app = Client(name= "VideoSplitterBot" , api_hash= "b45cfb43312e5172db8e2de986403e63", 
+app = Client(name= "ShoppingBot" , api_hash= "b45cfb43312e5172db8e2de986403e63", 
                       api_id=21424519 , proxy= proxyV2ray,
-                      bot_token="6305005735:AAEQRW6aMHGfRL8qNK6YfWe1jM0YRG8KyQM" , plugins=pluginTest)
+                      bot_token="6305005735:AAEQRW6aMHGfRL8qNK6YfWe1jM0YRG8KyQM" , plugins=myPlugs)
 
 app.run()
