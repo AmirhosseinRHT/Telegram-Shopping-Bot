@@ -1,7 +1,7 @@
 from pyrogram import Client 
 import logging
 logging.basicConfig(level=logging.INFO)
-
+#36,200,000 T
 proxyV2ray = {
     "scheme": "socks5",  # "socks5" and "http" are supported
     "hostname": "127.0.0.1",
