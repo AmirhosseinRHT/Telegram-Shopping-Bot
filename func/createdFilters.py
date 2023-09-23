@@ -1,5 +1,4 @@
 from pyrogram import Client , filters
-from pyrogram.types import Message , CallbackQuery
 from classes.Handler import shopBot
 
 def query_filter(data):
@@ -18,6 +17,11 @@ def check_step(step):
         return shopBot._userPocket[user_id]["step"] == step
     return filters.create(func)
 
+def is_admin( client : Client, message):
+    user_id = message.from_user.id
+    return user_id in shopBot._admins
+check_is_admin = filters.create(is_admin)
+
 async def join_Checker(client : Client , message):
     try:
         for channel in shopBot._joinChannels:
@@ -32,15 +36,14 @@ async def join_Checker_filter(_,client : Client , message):
     try:
         for channel in shopBot._joinChannels:
             temp = await client.get_chat_member(chat_id=channel , user_id=message.from_user.id)
+            return stat
     except Exception as exp:
         print(exp)
         stat = False
-    return stat
+        return stat
 join_filter = filters.create(join_Checker_filter)
 
-
 def check_user_started(_ , client :Client , message):
-        id = message.from_user.id
-        address = str(shopBot._userPocket[id]["lang"])
-        return ((address == "Fa") | (address == "En"))
+    value = str(shopBot._userPocket[message.from_user.id]["lang"])
+    return ((value == "Fa") | (value == "En"))
 user_started =  filters.create(check_user_started)
